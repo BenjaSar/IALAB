@@ -10,3 +10,5 @@ En este documento se encontrarán los ejercicios desarrollados durante el proces
 
 
 ![footer](doc/footer.png)
+
+Este proyecto se encuentra publicado bajo la licencia MIT. En este enlace podrá encontrar más información sobre la misma
