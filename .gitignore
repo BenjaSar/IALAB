@@ -35,4 +35,8 @@ npm-debug.log*
 
 .env
 
+//File extension for drawing
 .xcf
+
+//File extension for txt
+.txt
