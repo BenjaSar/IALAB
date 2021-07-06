@@ -1,0 +1,32 @@
+1. npm init -y 
+2. Instalacion de dependencias
+ 
+  npm i express apollo-server-express mysql typeorm reflect-metadata type-graphql
+
+ * Express: permite crear un servidor http
+ * Apollo-server-express: permite trabajar con Graphql
+ * type orn
+ * reflect-metadata
+ * typegraphql
+
+3. Instalando dependencia de desarrollo
+   npm i -D typescript ts-node @types/express @types/node nodemon
+
+    * typescript
+    * ts-node
+    *@types/express
+    * @types/node
+    * nodemon
+
+3. Configuracion typescript
+ npx tsc --init
+
+4. Se edita el archivo ts.Configuracion
+5. npm run start:dev 
+6. En una API Rest podemos enviar los metodos GET, POST, PUT, DELETE
+7. Graphql: Utiliza un unico método: POST
+
+OPERACIONES CRUD
+8. Para que las variables de enviroment sean habilitadas, se debe cargar la siguiente librería:
+ npm i dotenv --save
+ Importar y llamar en el config
