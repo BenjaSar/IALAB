@@ -30,3 +30,9 @@ OPERACIONES CRUD
 8. Para que las variables de enviroment sean habilitadas, se debe cargar la siguiente librería:
  npm i dotenv --save
  Importar y llamar en el config
+
+9. Entidades: Tablas en posgres y que campos van a tener
+  typeorm maneja la estructura de las tablas a través de una clase
+Para retornar un objeto usamos el decorador @ObjectType
+
+10. npm i class-validator @types/class-validator
