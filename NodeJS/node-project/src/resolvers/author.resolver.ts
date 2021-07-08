@@ -1,6 +1,8 @@
-import {Mutation, Resolver, Arg, InputType, Field, Query} from 'type-graphql'
+import {Mutation, Resolver, Arg, InputType, Field, Query, ObjectType} from 'type-graphql'
 import { Author } from '../entity/author.entity';
 import {getRepository, Repository} from "typeorm";
+import { Book } from '../entity/book.entity';
+import { IsEmail, isEmail } from 'class-validator';
 
 @InputType()
 class AuthorInput{
@@ -18,13 +20,34 @@ class AuthorUpdateInput{
     fullName?: string
 }
 
-
-
 @InputType()
 class AuthorIdInput{
     @Field(()=> Number)
     id!: number
 }
+
+//ObjecType => es para respuestas
+@ObjectType()
+class LogginResponse{
+    
+    @Field()
+    userId!: number;
+
+    @Field()
+    //jason web token
+    jwt!: string
+}
+
+@InputType()
+class LogginInput{
+    @Field()
+    @IsEmail()
+    email!: string;
+
+    @Field()
+    password!: string;
+}
+
 
 @Resolver()
 
@@ -54,7 +77,7 @@ export class AuthorResolver{
     //Creacion de la query
     @Query(()=> [Author])
     async getAllAuthors(): Promise<Author[]> {
-        return await this.authorRepository.find();
+        return await this.authorRepository.find({relations:['books']});
     }
 
     @Query(() => Author)
@@ -97,4 +120,17 @@ export class AuthorResolver{
         await this.authorRepository.delete(input.id)
         return true;
     }
+
+    //Metodo para el loggin
+   /* @Mutation(()=> LogginResponse)
+    async loggin(
+        @Arg("input", ()=> LogginInput) input: LogginInput
+    ){
+        //Desestructurar la información dentro de Input
+        const {email, password} = input;
+
+        const userFound = await this.
+
+        
+    }*/
 }
