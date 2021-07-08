@@ -1,4 +1,4 @@
-import {Mutation, Resolver, Arg, InputType, Field} from 'type-graphql'
+import {Mutation, Resolver, Arg, InputType, Field, Query} from 'type-graphql'
 import { Author } from '../entity/author.entity';
 import {getRepository, Repository} from "typeorm";
 
@@ -6,6 +6,24 @@ import {getRepository, Repository} from "typeorm";
 class AuthorInput{
     @Field()
     fullName!: string
+}
+
+
+@InputType()
+class AuthorUpdateInput{
+    @Field(()=> Number)
+    id!: number
+    
+    @Field()
+    fullName?: string
+}
+
+
+
+@InputType()
+class AuthorIdInput{
+    @Field(()=> Number)
+    id!: number
 }
 
 @Resolver()
@@ -32,5 +50,51 @@ export class AuthorResolver{
         } catch{
             console.error
         }
+    }
+    //Creacion de la query
+    @Query(()=> [Author])
+    async getAllAuthors(): Promise<Author[]> {
+        return await this.authorRepository.find();
+    }
+
+    @Query(() => Author)
+    async getOneAuthor(
+        @Arg("input",()=>AuthorIdInput) input: AuthorIdInput 
+        ): Promise<Author | undefined >{
+            try{
+                const author = await this.authorRepository.findOne(input.id);
+                if(!author){
+                    const error = new Error();
+                    error.message = ("Author does not exist")
+                }
+                return author
+            } catch (e) {
+                throw new Error(e)
+            }
+    }
+
+    //Actualizacion en la base de datos
+    @Mutation(() => Author)
+    async updateOneAuthor(
+        @Arg("input", ()=> AuthorUpdateInput) input: AuthorUpdateInput
+    ): Promise< Author | undefined >{
+        const authorExists = await this.authorRepository.findOne(input.id)
+        if (!authorExists){
+            throw new Error('Author does not exist')
+        }
+
+        const updateAuthor =  await this.authorRepository.save({
+            id: input.id,
+            fullName: input.fullName
+        })
+        return this.authorRepository.findOne(updateAuthor.id)
+    }
+
+    @Mutation(()=> Boolean)
+    async deleteOneAuthor(
+        @Arg("input", ()=> AuthorIdInput) input: AuthorIdInput
+    ): Promise <Boolean>{
+        await this.authorRepository.delete(input.id)
+        return true;
     }
 }
