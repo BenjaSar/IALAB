@@ -39,11 +39,11 @@ for (let i = 0; i <= number3; i++) {
 let number4 = parseInt(prompt("Ingrese un nnúmero"));
 let i = 0;
 while (i <= number4) {
-  if (i % 3 == 0) {
+  if (i % 3 === 0) {
     console.log(`El numero ${i} es múltiplo de 3. Fizz`);
-  } else if (i % 5 == 0) {
+  } else if (i % 5 === 0) {
     console.log(`El número ${i} es múltiplo de si. Buzz`);
-  } else if (i % 3 == 0 && i % 5 == 0) {
+  } else if (i % 3 === 0 && i % 5 === 0) {
     console.log("Fizz Buzz");
   } else {
     console.log([`${i}`]);
