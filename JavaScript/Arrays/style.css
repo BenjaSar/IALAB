@@ -1,0 +1,21 @@
+body {
+  background-color: powderblue;
+}
+h1 {
+  color: blue;
+}
+
+h1 .title {
+  display: block;
+  margin: 0, auto;
+  padding-top: 1em;
+}
+
+p {
+  color: red;
+}
+
+p img {
+  max-width: 320px;
+  height: auto;
+}

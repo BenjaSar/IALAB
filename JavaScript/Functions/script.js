@@ -47,3 +47,26 @@ const result = (num1, num2) => {
 
 //Invocación de la funcion
 console.log(result(4, 5) + 10);
+
+//Scope: Alcance que tienen las variables
+//var solo cuenta con function scope. No cuenta con block scope.
+
+let isValid = false;
+
+function validatePermission(role) {
+  let validRole = "admin";
+  let isValid = true; //Function scope
+
+  if (role === validRole) {
+    let isValid = true; //Block scope
+    console.log("Dentro del if", isValid);
+  } else {
+    let isValid = false; //Block scope
+    console.log("Dentro del else", isValid);
+  }
+
+  console.log("Dentro de la función", isValid);
+}
+validatePermission("any");
+
+console.log("A  nivel global", isValid);
