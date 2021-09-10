@@ -50,3 +50,69 @@ const element = "Libro de Karina";
 
 const index = market.indexOf(element); //IndexOf method
 console.log(index);
+
+/**
+ *@brief Lookig for an element in the array
+ */
+const el = "Tomás";
+const ind = miArray.indexOf(el);
+console.log(ind);
+console.log(miArray[ind]);
+
+/**
+ * @brief Iteration over array with FOR
+ */
+const myArray = ["Amir", "Juan", "Isabella", "Manuel", "Dayra", "Juliana"];
+for (let i = 0; i < myArray.length; i++) {
+  console.log(myArray[i]);
+}
+
+/**
+ *@brief Iteration over array with forEach
+ * index is optional
+ */
+myArray.forEach((item, index) => {
+  console.log(item);
+  console.log(index);
+});
+
+/**
+ * @brief ArrayManipulation
+ * Sort and reduce methods
+ */
+const numbers = [10, 60, 70, 50, 40, 30, 20];
+//Sort
+const ordenedArray = myArray.sort();
+console.log(ordenedArray);
+//with reverse
+console.log(ordenedArray.reverse());
+
+const orderedNumbers = numbers.sort();
+console.log(orderedNumbers);
+//With reverse
+console.log(orderedNumbers.reverse());
+//Withou reduces => The reassignation of variables aren't a good practice. Try maintaining
+//the values constans
+let total = 0;
+numbers.forEach((number) => {
+  total += number;
+});
+console.log(total);
+
+//With reduces
+// x = initial value
+const tot = numbers.reduce((accumulator, actualValue) => {
+  console.log("Accumulator", accumulator);
+  console.log("Actual value", actualValue);
+  console.log("Here the iteration is finished");
+  return accumulator + actualValue;
+}, (x = 0));
+
+console.log(tot);
+
+//Other way to write the last codec
+const t = numbers.reduce(
+  (accumulator, actualValue) => accumulator + actualValue,
+  0
+);
+console.log(t);
