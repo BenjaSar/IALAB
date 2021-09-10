@@ -38,6 +38,7 @@ npm-debug.log*
 //File extension for drawing
 .xcf
 .txt
+.png
 
 //File extension for txt
 .txt
