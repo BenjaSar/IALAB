@@ -91,7 +91,7 @@ const orderedNumbers = numbers.sort();
 console.log(orderedNumbers);
 //With reverse
 console.log(orderedNumbers.reverse());
-//Withou reduces => The reassignation of variables aren't a good practice. Try maintaining
+//Withou reduces => The reassignation of variables isn't a good practice. Try maintaining
 //the values constans
 let total = 0;
 numbers.forEach((number) => {
